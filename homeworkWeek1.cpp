@@ -55,7 +55,8 @@ int main( )
 
     std::string jsonFileName = "week1JsonInput.json";
     JsonSimulationManager< > jsonSimulationManager( cppFolder + jsonFileName );
-
+    JsonSimulationManager["initialEpoch"] = 10 * tudat::physical_constants::JULIAN_YEAR;
+    JsonSimulationManager["finalEpoch"] = 10 * tudat::physical_constants::JULIAN_YEAR + 3.5 * tudat::physical_constants::JULIAN_DAY;
     for( int useLowFidelity = 0; useLowFidelity < 2; useLowFidelity++ )
     {
         if( useLowFidelity == 1 )
@@ -65,7 +66,9 @@ int main( )
                     {
                     "Moon": [
                     {
-                    "type": "pointMassGravity"
+                    "maximumDegree": 2,
+                    "maximumOrder": 2,
+                    "type": "sphericalHarmonicGravity"
                     }
                     ],
                     "Earth": [
@@ -99,11 +102,11 @@ int main( )
             }
 
             jsonSimulationManager[ "bodies" ][ "LRO" ][ "initialState" ][ "argumentOfPeriapsis" ] =
-                    static_cast< double >( 0 * 36  ) * mathematical_constants::PI / 180.0;
+                    static_cast< double >(  1 * 36  ) * mathematical_constants::PI / 180.0;
             jsonSimulationManager[ "bodies" ][ "LRO" ][ "initialState" ][ "longitudeOfAscendingNode" ] =
-                    static_cast< double >( 0 * 36  ) * mathematical_constants::PI / 180.0;
+                    static_cast< double >( 4 * 36  ) * mathematical_constants::PI / 180.0;
             jsonSimulationManager[ "bodies" ][ "LRO" ][ "initialState" ][ "trueAnomaly" ] =
-                    static_cast< double >( 0 * 36  ) * mathematical_constants::PI / 180.0;
+                    static_cast< double >( 8 * 36  ) * mathematical_constants::PI / 180.0;
             jsonSimulationManager[ "export" ][ 0 ][ "file" ] =
                     outputDirectory + "keplerOutput_" + std::to_string( propagatorType ) + "_" + std::to_string( useLowFidelity ) + ".dat";
             jsonSimulationManager[ "export" ][ 1 ][ "file" ] =
