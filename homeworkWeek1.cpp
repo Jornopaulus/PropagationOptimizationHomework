@@ -55,11 +55,6 @@ int main( )
 
     std::string jsonFileName = "week1JsonInput.json";
     JsonSimulationManager< > jsonSimulationManager( cppFolder + jsonFileName );
-
-    const double initialEpoch = 10 * tudat::physical_constants::JULIAN_YEAR;
-    const double finalEpoch = 10 * tudat::physical_constants::JULIAN_YEAR + 3.5 * tudat::physical_constants::JULIAN_DAY;
-          jsonSimulationManager[ "initialEpoch" ] = initialEpoch;
-           jsonSimulationManager[ "finalEpoch" ] = finalEpoch;
     for( int useLowFidelity = 0; useLowFidelity < 2; useLowFidelity++ )
     {
         if( useLowFidelity == 1 )
@@ -72,11 +67,6 @@ int main( )
                     "maximumDegree": 2,
                     "maximumOrder": 2,
                     "type": "sphericalHarmonicGravity"
-                    }
-                    ],
-                    "Earth": [
-                    {
-                    "type": "pointMassGravity"
                     }
                     ]
                     }
